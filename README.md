@@ -1,6 +1,6 @@
 # BOPjersey
 Code for 2016 Microsoft Beauty of Programming Contest
-![image](Problem.PNG)
+![image](Problem.png)
 
 
 **思路：**  
