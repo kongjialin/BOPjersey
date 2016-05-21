@@ -7,9 +7,9 @@ Code for 2016 Microsoft Beauty of Programming Contest
 
 判断给定的参数id是Id还是AuId：  
 发请求expr=Composite(AA.AuId=id)&attributes=Id,AA.AuId,AA.AfId，如果返回的entities长度为0，则为Id，否则为AuId。而且当为AuId时，该请求所得结果可以直接用于后续计算，避免后面重复发送同样的请求
-
-**[id1,id2]**
 ***
+
+**[id1,id2]**  
 2-hop：[id1-other-id2]和[id1-id3-id2]  
 请求一：expr=Or(Id=id1,Id=id2)&attributes=RId,J.JId,C.CId,F.FId,AA.AuId
 =>id1.RId, id1.Other 和 id2.Other  
@@ -31,9 +31,8 @@ b) [id1-other-id3-id2] :
 expr=Or(Or(Id=a,Id=b),Or(Id=c,Id=d))&attributes=Id,J.JId,C.CId,F.FId,AA.AuId
 的形式，求出{id3}[index].Other，
 然后分别与id1.Other 求交集
-
-**[id, AuId]**
 ***  
+**[id, AuId]**  
 expr=Id=id&attributes=RId,J.JId,C.CId,F.FId,AA.AuId
 => id.RId, id.Other, id.AuId
 expr=Composite(AA.AuId=AuId)&attributes=Id,AA.AuId,AA.AfId
@@ -51,9 +50,8 @@ b)
 的形式，求出id.RId[index].RId，然后分别与{id2}求交集  
 c)
 [id-AuId2-AfId-AuId]：(多线程or拼起来or分着发请求)把id.AuId中的每个元素id.AuId[index]（除去AuId，如果有等于AuId的那个，单独算）按照expr=Composite(AA.AuId=a)&attributes=AA.AuId,AA.AfId的形式，找出id.Auid[index].AfId，然后分别与AuId.AfId求交集
-
-**[AuId, Id]**
 ***
+**[AuId, Id]**  
 expr=Id=id&attributes=J.JId,C.CId,F.FId,AA.AuId
 => Id.Other, Id.AuId  
 expr=RId=Id&attributes=Id
@@ -70,9 +68,9 @@ a) [AuId-id2-other-Id]和[AuId-id2-id3-Id]：
 的形式，求出id2[index].Other和id2[index].RId，然后分别与Id.Other和{id3}求交集  
 b)[AuId-AfId-AuId2-Id]：  
 如果Id.AuId包含AuId，则单独算出一类3-hop路径—AuId-AuId.AfId-AuId-Id，然后对于剩余的每个Id.AuId[index]，按照expr=Composite(AA.AuId=a)&attributes=AA.AuId,AA.AfId的形式，找出id.Auid[index].AfId，然后分别与AuId.AfId求交集
-
-**[AuId1, AuId2]**
 ***
+
+**[AuId1, AuId2]**  
 expr=Composite(AA.AuId=AuId1)&attributes=Id,AA.AuId,AA.AfId
 => {id1| id1<->AuId1},
 AuId1.AfId  
@@ -90,16 +88,16 @@ b)
 对于{id1}中的每一个元素{id1}[index]，按照expr=Or(Or(Id=a,Id=b),Or(Id=c,Id=d))&attributes=Id,RId
 的形式，
 求出{id1}[index].RId，然后分别与{id2}求交集
-
-注
 ***
+
+**注**  
 get请求最大长度为2048，因此expr表达式长度设为1800  
 Id的最大长度为基本为10（但目前是按照最大19考虑的）  
 Or()操作拼64个Id  
 query最大条数count目前只设为10000，对于各别论文，这个值是不够的，可以多获取一个CC（Citation count）字段，根据此字段值的大小决定count设为多少  
-
-RESTful参考资料
 ***
+
+**RESTful参考资料**  
 [how-to-build-restful-service-with-java-using-jax-rs-and-jersey](http://crunchify.com/how-to-build-restful-service-with-java-using-jax-rs-and-jersey/)
 
 [restful](http://wiki.jikexueyuan.com/project/restful/)
