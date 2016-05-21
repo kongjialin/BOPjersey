@@ -91,4 +91,23 @@ b)
 的形式，
 求出{id1}[index].RId，然后分别与{id2}求交集
 
+注
+***
+get请求最大长度为2048，因此expr表达式长度设为1800  
+Id的最大长度为基本为10（但目前是按照最大19考虑的）  
+Or()操作拼64个Id  
+query最大条数count目前只设为10000，对于各别论文，这个值是不够的，可以多获取一个CC（Citation count）字段，根据此字段值的大小决定count设为多少  
+
+RESTful参考资料
+***
+[how-to-build-restful-service-with-java-using-jax-rs-and-jersey](http://crunchify.com/how-to-build-restful-service-with-java-using-jax-rs-and-jersey/)
+
+[restful](http://wiki.jikexueyuan.com/project/restful/)
+
+[jersey-25-maven-easy-rest-web-services](http://poor-developer.blogspot.com/2014/02/jersey-25-maven-easy-rest-web-services.html)
+
+[maven-dynamic-web-project](http://poor-developer.blogspot.com/2014/02/maven-dynamic-web-project-ouch-how-do-i.html)
+
+[tomcat](http://www.cnblogs.com/pannysp/archive/2012/03/07/2383364.html)
+
 
