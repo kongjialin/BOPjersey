@@ -2,6 +2,9 @@
 Code for 2016 Microsoft Beauty of Programming Contest
 ![image](Problem.png)
 
+RESTful url:   
+http://{your_ip}/BOPjersey/bop/rest  
+把项目生成的BOPjersey.war放在tomcat的webapps目录下
 
 **思路：**  
 
